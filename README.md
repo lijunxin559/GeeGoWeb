@@ -6,7 +6,7 @@
 
  [classroom](https://geektutu.com/post/gee-day1.html)
 
-[code exercise](https://github.com/lijunxin559/GeeGoWeb)
+[code exercise](https://github.com/lijunxin559/GeeGoWeb/tree/main/http-base)
 
 1. 搭建的思路：使用http.HandleFunc太重复->封装成struct engine使用serveHTTP集成方法->为gee添加New,Run,GET,POST方法。
 
@@ -30,7 +30,7 @@
 
  [classroom](https://geektutu.com/post/gee-day2.html)
 
-[code exercise](https://github.com/lijunxin559/GeeGoWeb)
+[code exercise](https://github.com/lijunxin559/GeeGoWeb/tree/main/context)
 
 1.将`路由(router)`独立出来，方便之后增强
 
@@ -44,7 +44,7 @@
 
  [classroom](https://geektutu.com/post/gee-day3.html)
 
-[code exercise](https://github.com/lijunxin559/GeeGoWeb)
+[code exercise](https://github.com/lijunxin559/GeeGoWeb/tree/main/router)
 
 1.主要就是前缀树的设计存储：怎么去匹配，怎么去插入，怎么去记录（感觉这部分还要多看看）
 
@@ -55,7 +55,7 @@
 
  [classroom](https://geektutu.com/post/gee-day4.html)
 
-[code exercise](https://github.com/lijunxin559/GeeGoWeb)
+[code exercise](https://github.com/lijunxin559/GeeGoWeb/tree/main/group)
 
 
 1.使用分组进行嵌套定义路由
@@ -71,7 +71,7 @@
 
 [classroom](https://geektutu.com/post/gee-day5.html)
 
-[code exercise](https://github.com/lijunxin559/GeeGoWeb)
+[code exercise](https://github.com/lijunxin559/GeeGoWeb/tree/main/middleware)
 
 1.收到请求之后，请求的所有信息保存在Context之中，所有应作用于该路由器的中间件也保存在Context之中，依次进行调用，保存在Context中的目的是为了能在handler处理前后都有机会执行中间件，这个根据用户定义
 
@@ -87,18 +87,36 @@
 
 [classroom](https://geektutu.com/post/gee-day6.html)
 
-[code exercise](https://github.com/lijunxin559/GeeGoWeb) 
+[code exercise](https://github.com/lijunxin559/GeeGoWeb/tree/main/template) 
 
 1.*template.Template 和 template.FuncMap对象，前者将所有的模板加载进内存，后者是所有的自定义模板渲染函数
 
 2.Context中指定成员变量engine，能够通过engine访问HTML模版
 
+3.特别注意当前的目录架构
+static下放置所有的资源文件，访问的时候使用/assets/filename进行访问，即服务器和用户路径访问分离
+
+```
+---gee/
+---static/
+   |---css/
+        |---geektutu.css
+   |---file1.txt
+   |---file2.txt
+   |---file3.txt 
+---templates/
+   |---arr.tmpl
+   |---css.tmpl
+   |---custom_func.tmpl
+---main.go
+
+```
 
 ## day7 错误恢复
 
 [classroom](https://geektutu.com/post/gee-day7.html)
 
-[code exercise](https://github.com/lijunxin559/GeeGoWeb) 
+[code exercise](https://github.com/lijunxin559/GeeGoWeb/tree/main/error-deal) 
 
 1.golang 中panic可以通过defer中的recover恢复，定义Recovery中间件函数，先执行router  deal调用，然后捕捉处理错误，恢复到监听一层
 
@@ -106,3 +124,5 @@
 
 
   <em>至此我们就完成了一个类似gin的web框架！完结撒花！～</em>
+
+>>再次感谢原作者的详细讲解，一套下来之后，理解加深很多！
